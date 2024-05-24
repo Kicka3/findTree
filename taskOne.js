@@ -68,23 +68,20 @@ export function findAndProcessTree3(obj) {
    return null;
 }
 
-//Второй Вариант
+//Вариант 2 (Наиболее подходящий)
 export const processDataRecursively = (data, keyToFind) => {
    if (typeof data !== 'object' || data === null) {
       return null;
    }
 
    if (data.hasOwnProperty(keyToFind)) {
-      const filteredArray = data[keyToFind]
+      return data[keyToFind]
          .filter(item => item.name && item.name !== 'empty' && item.age !== undefined)
          .sort((a, b) => {
             const numberA = Number(a.name.split('name')[1])
             const numberB = Number(b.name.split('name')[1])
             return numberB - numberA
-         })
-
-
-      return filteredArray;
+         });
    }
 
    let result = null;
